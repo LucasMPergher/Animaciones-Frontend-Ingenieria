@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dibujo de path SVG</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { min-height: 100svh; margin: 0; display: grid; place-items: center; padding: 2rem; }
+    main { width: min(42rem, 100%); text-align: center; }
+    svg { width: min(60vw, 20rem); overflow: visible; }
+    path { fill: none; stroke: #88f0c8; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 340; stroke-dashoffset: 340; animation: draw 1.4s ease-out forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) { path { animation: none; stroke-dashoffset: 0; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p>SVG · stroke draw</p>
+    <svg viewBox="0 0 200 160" role="img" aria-labelledby="icon-title icon-desc">
+      <title id="icon-title">Camino en ascenso</title>
+      <desc id="icon-desc">Una línea asciende y termina en una flecha.</desc>
+      <path d="M20 130 C55 115 53 72 87 80 S130 115 177 29 M145 32 L178 28 L174 62"></path>
+    </svg>
+  </main>
+</body>
+</html>

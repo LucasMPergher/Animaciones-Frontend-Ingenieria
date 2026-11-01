@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stagger con CSS</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 2rem; }
+    main { width: min(52rem, 100%); }
+    h1 { font-size: clamp(2.2rem, 6vw, 4rem); letter-spacing: -.04em; }
+    ul { list-style: none; padding: 0; display: grid; gap: .8rem; }
+    li { padding: 1.2rem 1.4rem; background: #1a2030; border: 1px solid #2e3851; border-radius: 1rem; color: #dfe7ff; animation: enter .55s cubic-bezier(.2,.8,.2,1) both; }
+    li:nth-child(2) { animation-delay: .12s; }
+    li:nth-child(3) { animation-delay: .24s; }
+    li:nth-child(4) { animation-delay: .36s; }
+    @keyframes enter { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { li { animation: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p>CSS · stagger declarativo</p>
+    <h1>Una secuencia, sin JavaScript.</h1>
+    <ul>
+      <li>01 · Mantener cada elemento legible</li>
+      <li>02 · Declarar el ritmo en el stylesheet</li>
+      <li>03 · Usar transform y opacity</li>
+      <li>04 · Retirar el movimiento cuando se solicita</li>
+    </ul>
+  </main>
+</body>
+</html>

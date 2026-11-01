@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>View Transition progresiva</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { min-height: 100svh; margin: 0; display: grid; place-items: center; padding: 2rem; }
+    main { width: min(44rem, 100%); padding: clamp(1.5rem, 5vw, 3.5rem); border: 1px solid #35405a; border-radius: 1.5rem; background: #1a2030; }
+    h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: -.05em; }
+    p { color: #bdc8df; line-height: 1.7; }
+    button { border: 0; border-radius: 999px; padding: .9rem 1.2rem; background: #88f0c8; color: #10131c; font: inherit; font-weight: 700; cursor: pointer; }
+    button:focus-visible { outline: 3px solid white; outline-offset: 4px; }
+    main { view-transition-name: card; }
+    ::view-transition-old(card), ::view-transition-new(card) { animation-duration: .35s; }
+    ::view-transition-old(card) { animation-name: fade-out; }
+    ::view-transition-new(card) { animation-name: fade-in; }
+    @keyframes fade-out { to { opacity: 0; transform: translateY(-.5rem); } }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(.5rem); } }
+    @media (prefers-reduced-motion: reduce) { ::view-transition-old(card), ::view-transition-new(card) { animation-duration: .01ms; } }
+  </style>
+</head>
+<body>
+  <main id="card" aria-live="polite">
+    <p>CSS · View Transition API</p>
+    <h1 id="title">Una mejora opcional</h1>
+    <p id="copy">La navegación y el contenido funcionan aunque el navegador no implemente View Transitions.</p>
+    <button id="change" type="button">Cambiar estado</button>
+  </main>
+  <script>
+    const title = document.querySelector("#title");
+    const copy = document.querySelector("#copy");
+    const button = document.querySelector("#change");
+    let alternate = false;
+
+    button.addEventListener("click", () => {
+      const update = () => {
+        alternate = !alternate;
+        title.textContent = alternate ? "El estado cambió" : "Una mejora opcional";
+        copy.textContent = alternate
+          ? "El cambio de texto ocurre en todos los navegadores; solo la transición visual depende del soporte."
+          : "La navegación y el contenido funcionan aunque el navegador no implemente View Transitions.";
+      };
+
+      if (typeof document.startViewTransition === "function") document.startViewTransition(update);
+      else update();
+    });
+  </script>
+</body>
+</html>

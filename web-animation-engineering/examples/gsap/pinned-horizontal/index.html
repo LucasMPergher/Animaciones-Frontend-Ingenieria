@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historia horizontal con GSAP</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { margin: 0; }
+    header { min-height: 65svh; display: grid; align-content: center; padding: 3rem max(2rem, calc((100vw - 70rem) / 2)); }
+    h1 { max-width: 10ch; font-size: clamp(3.5rem, 10vw, 8rem); line-height: .95; letter-spacing: -.06em; }
+    .story { overflow: hidden; }
+    .track { display: flex; width: 300vw; }
+    article { width: 100vw; min-height: 75svh; padding: 4rem max(2rem, calc((100vw - 60rem) / 2)); display: grid; align-content: end; box-sizing: border-box; }
+    article:nth-child(1) { background: linear-gradient(135deg, #274a63, #1a2030); }
+    article:nth-child(2) { background: linear-gradient(135deg, #66518d, #272541); }
+    article:nth-child(3) { background: linear-gradient(135deg, #c56f55, #382a42); }
+    h2 { font-size: clamp(2.5rem, 7vw, 5rem); letter-spacing: -.05em; }
+    p { max-width: 34rem; color: #e0e5f3; line-height: 1.7; }
+    footer { min-height: 40svh; display: grid; place-items: center; }
+    @media (max-width: 720px), (prefers-reduced-motion: reduce) {
+      .story { overflow: visible; }
+      .track { width: auto; display: grid; }
+      article { width: auto; min-height: 58svh; }
+    }
+  </style>
+</head>
+<body>
+  <header><div><p>GSAP · ScrollTrigger · pin + scrub</p><h1>Una historia en tres partes</h1><p>En pantallas amplias, el scroll acompaña el recorrido horizontal.</p></div></header>
+  <section class="story" aria-label="Historia en tres partes">
+    <div class="track">
+      <article><div><p>01 / ORIGEN</p><h2>Un punto de partida</h2><p>El primer panel introduce el tema sin depender del movimiento.</p></div></article>
+      <article><div><p>02 / CAMBIO</p><h2>Un nuevo ritmo</h2><p>La secuencia horizontal solo se usa en pantallas amplias.</p></div></article>
+      <article><div><p>03 / DESTINO</p><h2>Un cierre claro</h2><p>Con reduced motion o en móvil, los paneles se apilan en el flujo normal.</p></div></article>
+    </div>
+  </section>
+  <footer><p>El contenido y el orden semántico son los mismos en ambos modos.</p></footer>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+    media.add({
+      wide: "(min-width: 721px)",
+      motionOK: "(prefers-reduced-motion: no-preference)"
+    }, (context) => {
+      if (!context.conditions.wide || !context.conditions.motionOK) return;
+      const track = document.querySelector(".track");
+      gsap.to(track, {
+        x: () => -(track.scrollWidth - document.documentElement.clientWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".story",
+          start: "top top",
+          end: () => "+=" + (track.scrollWidth - document.documentElement.clientWidth),
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true
+        }
+      });
+    });
+    window.addEventListener("pagehide", (event) => {
+      if (!event.persisted) media.revert();
+    }, { once: true });
+  </script>
+</body>
+</html>

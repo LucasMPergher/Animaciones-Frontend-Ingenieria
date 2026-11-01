@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text reveal con GSAP</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { min-height: 100svh; margin: 0; display: grid; place-items: center; padding: 2rem; }
+    main { width: min(60rem, 100%); }
+    h1 { font-size: clamp(3rem, 10vw, 8rem); line-height: .98; letter-spacing: -.065em; }
+    .word { display: inline-block; margin-right: .2em; }
+    p { color: #aeb8d1; max-width: 38rem; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>GSAP · text reveal</p>
+    <h1 aria-label="Cada palabra conserva su lugar."><span class="word" aria-hidden="true">Cada</span><span class="word" aria-hidden="true">palabra</span><span class="word" aria-hidden="true">conserva</span><span class="word" aria-hidden="true">su</span><span class="word" aria-hidden="true">lugar.</span></h1>
+    <p>La etiqueta accesible mantiene una sola frase. En producción, genera los fragmentos por palabra sin romper idioma, puntuación ni ajuste de línea.</p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script>
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.from(".word", { y: 24, autoAlpha: 0, duration: 0.65, stagger: 0.08, ease: "power3.out" });
+    });
+    window.addEventListener("pagehide", (event) => {
+      if (!event.persisted) media.revert();
+    }, { once: true });
+  </script>
+</body>
+</html>

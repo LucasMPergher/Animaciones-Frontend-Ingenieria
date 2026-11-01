@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Animation Engineering · demos</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { margin: 0; }
+    main { width: min(76rem, calc(100% - 3rem)); margin: 0 auto; padding: 5rem 0; }
+    h1 { max-width: 12ch; margin: 0; font-size: clamp(3.5rem, 9vw, 7rem); line-height: .95; letter-spacing: -.065em; }
+    .intro { max-width: 42rem; margin: 1.5rem 0 3rem; color: #b9c4dd; line-height: 1.75; }
+    section { padding: 2rem 0; border-top: 1px solid #35405a; }
+    h2 { font-size: 1.3rem; }
+    ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: .8rem; }
+    a { display: block; height: 100%; box-sizing: border-box; padding: 1rem 1.1rem; border: 1px solid #35405a; border-radius: 1rem; color: #f5f7ff; text-decoration: none; background: #171d2a; }
+    a:hover { border-color: #88f0c8; color: #88f0c8; transform: translateY(-2px); }
+    a:focus-visible { outline: 3px solid #88f0c8; outline-offset: 3px; }
+    span { display: block; margin-top: .4rem; color: #aeb8d1; font-size: .9rem; line-height: 1.5; }
+    @media (prefers-reduced-motion: reduce) { a { transition: none; } a:hover { transform: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p>WEB ANIMATION ENGINEERING · 19 DEMOS</p>
+    <h1>Motion con criterio.</h1>
+    <p class="intro">Ejemplos organizados por tecnología. Elige una tarjeta para abrir la demo; para ejecutar los componentes React, sigue las instrucciones del README de esta carpeta.</p>
+    <section>
+      <h2>CSS y navegador</h2>
+      <ul>
+        <li><a href="css/hero-reveal/index.html">Hero reveal<span>Keyframes y reduced motion</span></a></li>
+        <li><a href="css/stagger-list/index.html">Stagger list<span>Entrada secuencial declarativa</span></a></li>
+        <li><a href="css/scroll-reveal/index.html">Scroll reveal<span>View timeline con fallback</span></a></li>
+        <li><a href="css/view-transition/index.html">View Transition<span>Actualización de contenido con fallback</span></a></li>
+        <li><a href="css/image-transition/index.html">Image transition<span>Crossfade entre ilustraciones</span></a></li>
+        <li><a href="css/fixed-background/index.html">Fixed background<span>Imagen fija con contenido que se desplaza delante</span></a></li>
+        <li><a href="svg/path-draw/index.html">SVG path<span>Dibujo de path con CSS</span></a></li>
+        <li><a href="canvas/particle-field/index.html">Canvas field<span>Loop, visibilidad y DPR</span></a></li>
+      </ul>
+    </section>
+    <section>
+      <h2>GSAP</h2>
+      <ul>
+        <li><a href="gsap/parallax/index.html">Parallax<span>ScrollTrigger y matchMedia</span></a></li>
+        <li><a href="gsap/pinned-horizontal/index.html">Pinned horizontal<span>Pin/scrub y alternativa responsiva</span></a></li>
+        <li><a href="gsap/text-reveal/index.html">Text reveal<span>Stagger de palabras accesible</span></a></li>
+        <li><a href="gsap/animated-navigation/index.html">Animated navigation<span>Menú con estado ARIA</span></a></li>
+        <li><a href="gsap-react/usegsap-component.jsx">GSAP React<span>Componente useGSAP para integrar en Vite</span></a></li>
+      </ul>
+    </section>
+    <section>
+      <h2>Motion para React</h2>
+      <ul>
+        <li><a href="motion/stagger-list.jsx">Variants + stagger<span>Coordinación padre e hijos</span></a></li>
+        <li><a href="motion/interactive-button.jsx">Interactive button<span>Feedback hover/tap y aria-pressed</span></a></li>
+        <li><a href="motion/card-layout.jsx">Card layout<span>Reordenamiento con layout animation</span></a></li>
+        <li><a href="motion/scroll-reveal.jsx">Scroll motion<span>useScroll, transform y reduced motion</span></a></li>
+        <li><a href="motion/page-transition.jsx">Page transition<span>Presencia de contenido por estado</span></a></li>
+      </ul>
+    </section>
+    <section>
+      <h2>Lottie</h2>
+      <ul>
+        <li><a href="lottie/pulse/index.html">Pulse<span>JSON local y control play/pause</span></a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

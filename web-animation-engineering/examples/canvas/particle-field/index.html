@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canvas y ciclo de animación</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { min-height: 100svh; margin: 0; display: grid; place-items: center; padding: 2rem; }
+    main { width: min(52rem, 100%); }
+    canvas { display: block; width: 100%; height: min(55vh, 24rem); border: 1px solid #35405a; border-radius: 1rem; background: #151c2b; }
+    p { color: #bdc8df; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>Canvas · loop controlado</p>
+    <h1>Un campo pequeño de partículas</h1>
+    <p id="description">La ilustración decorativa usa un ciclo de animación. No contiene controles ni información esencial.</p>
+    <canvas id="field" aria-hidden="true"></canvas>
+  </main>
+  <script>
+    const canvas = document.querySelector("#field");
+    const context = canvas.getContext("2d");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const dots = Array.from({ length: 24 }, (_, index) => ({
+      x: (index * 37 % 97) / 100,
+      y: (index * 53 % 91) / 100,
+      radius: 1.5 + (index % 4),
+      speed: 0.018 + (index % 5) * 0.006
+    }));
+    let frame = 0;
+    let elapsed = 0;
+    let previous = 0;
+
+    function resize() {
+      const bounds = canvas.getBoundingClientRect();
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(bounds.width * ratio);
+      canvas.height = Math.round(bounds.height * ratio);
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      draw();
+    }
+
+    function draw() {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      context.clearRect(0, 0, width, height);
+      for (const dot of dots) {
+        const y = ((dot.y + elapsed * dot.speed) % 1) * height;
+        context.beginPath();
+        context.arc(dot.x * width, y, dot.radius, 0, Math.PI * 2);
+        context.fillStyle = "rgba(136, 240, 200, 0.78)";
+        context.fill();
+      }
+    }
+
+    function animate(now) {
+      if (previous) elapsed += Math.min((now - previous) / 1000, 0.05);
+      previous = now;
+      draw();
+      frame = requestAnimationFrame(animate);
+    }
+
+    function stop() {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      previous = 0;
+    }
+
+    function syncMotion() {
+      stop();
+      if (!reduceMotion.matches && !document.hidden) frame = requestAnimationFrame(animate);
+      else draw();
+    }
+
+    window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", syncMotion);
+    reduceMotion.addEventListener("change", syncMotion);
+    resize();
+    syncMotion();
+  </script>
+</body>
+</html>

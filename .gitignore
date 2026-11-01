@@ -1,0 +1,21 @@
+# JavaScript build artifacts
+**/node_modules/
+**/dist/
+**/dist-ssr/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local configuration and editor files
+.env
+.env.*
+!.env.example
+*.local
+.DS_Store
+.vscode/
+.idea/

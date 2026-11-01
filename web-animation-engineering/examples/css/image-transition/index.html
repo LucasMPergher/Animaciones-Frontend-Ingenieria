@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transición de ilustraciones con CSS</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { min-height: 100svh; margin: 0; display: grid; place-items: center; padding: 2rem; }
+    main { width: min(48rem, 100%); }
+    figure { position: relative; aspect-ratio: 16 / 9; margin: 1.5rem 0; overflow: hidden; border-radius: 1.3rem; background: #283654; }
+    .art { position: absolute; inset: 0; transition: opacity .5s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+    .art img { width: 100%; height: 100%; object-fit: cover; }
+    .art-two { opacity: 0; transform: scale(1.06); }
+    figure.is-next .art-one { opacity: 0; transform: scale(.96); }
+    figure.is-next .art-two { opacity: 1; transform: scale(1); }
+    figcaption { position: absolute; left: 1rem; bottom: 1rem; color: white; font-weight: 700; }
+    p { color: #bdc8df; }
+    button { border: 0; border-radius: 999px; padding: .9rem 1.2rem; background: #88f0c8; color: #10131c; font: inherit; font-weight: 700; cursor: pointer; }
+    button:focus-visible { outline: 3px solid white; outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) { .art { transition-duration: .01ms; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p>CSS · transición de imagen</p>
+    <h1>Reemplazo con crossfade</h1>
+    <figure id="artwork" aria-label="Ilustración abstracta de muestra">
+      <div class="art art-one" aria-hidden="true"><img src="art-one.svg" alt=""></div>
+      <div class="art art-two" aria-hidden="true"><img src="art-two.svg" alt=""></div>
+      <figcaption id="caption">Composición cálida</figcaption>
+    </figure>
+    <button id="toggle" type="button" aria-pressed="false">Ver segunda ilustración</button>
+  </main>
+  <script>
+    const artwork = document.querySelector("#artwork");
+    const button = document.querySelector("#toggle");
+    const caption = document.querySelector("#caption");
+    button.addEventListener("click", () => {
+      const next = button.getAttribute("aria-pressed") !== "true";
+      artwork.classList.toggle("is-next", next);
+      button.setAttribute("aria-pressed", String(next));
+      button.textContent = next ? "Ver primera ilustración" : "Ver segunda ilustración";
+      caption.textContent = next ? "Composición fría" : "Composición cálida";
+    });
+  </script>
+</body>
+</html>

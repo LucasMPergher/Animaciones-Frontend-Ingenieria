@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hero reveal con CSS</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    body { min-height: 100svh; margin: 0; display: grid; place-items: center; padding: 2rem; }
+    main { width: min(58rem, 100%); }
+    p { color: #aeb8d1; max-width: 42rem; line-height: 1.7; }
+    h1 { font-size: clamp(3rem, 10vw, 7rem); line-height: .98; letter-spacing: -.06em; margin: .35em 0; }
+    .eyebrow { color: #88f0c8; text-transform: uppercase; letter-spacing: .16em; font-size: .8rem; }
+    .hero > * { animation: arrive .7s cubic-bezier(.2,.8,.2,1) both; }
+    .hero h1 { animation-delay: .12s; }
+    .hero p:last-child { animation-delay: .24s; }
+    @keyframes arrive { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .hero > * { animation: none; } }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <p class="eyebrow">CSS · entrada de página</p>
+    <h1>Motion, con intención.</h1>
+    <p>Contenido visible desde el primer render. La animación solo añade un desplazamiento breve y se elimina cuando el usuario solicita movimiento reducido.</p>
+  </main>
+</body>
+</html>
