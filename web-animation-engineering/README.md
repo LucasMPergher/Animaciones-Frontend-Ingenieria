@@ -4,6 +4,21 @@ Sistema modular de Agent Skills para diseñar e implementar animaciones web mant
 
 ¿Buscás ideas para empezar? Lee [qué animaciones podés pedirme](GUIA_DE_ANIMACIONES.md), con patrones, demos y prompts listos para adaptar.
 
+## El laboratorio visual: `animation-lab`
+
+`animation-lab` es la app compañera para abrir y probar las animaciones del catálogo. Funciona como una galería interactiva: elegís una tarjeta, ves la demo en la misma página y podés volver a ejecutarla cuando quieras. No genera animaciones automáticamente; sirve para entender cómo se ve cada patrón, qué lo activa y qué tecnologías usa antes de pedirlo o adaptarlo a un proyecto.
+
+Incluye 19 demos: 13 páginas HTML y 6 componentes React. Podés filtrarlas por CSS y APIs del navegador, GSAP, Motion, React + GSAP y Lottie. Según la demo, la animación comienza al abrirla, al desplazarte o al interactuar con un botón o control. El catálogo cubre, entre otros, revelados de texto, navegación animada, paneles horizontales fijados al scroll, fondos fijos, transiciones, SVG, Canvas y microinteracciones.
+
+El laboratorio ayuda a:
+
+- Explorar visualmente los ejemplos de [`examples/`](examples/README.md) sin tener que abrir cada archivo a mano.
+- Comparar enfoques y elegir un punto de partida para una animación.
+- Comprobar el disparador y el comportamiento interactivo de cada demo.
+- Usar los ejemplos como referencia al pedir una implementación con estas skills.
+
+En el workspace completo, `animation-lab/` está junto a este directorio y toma de aquí los ejemplos. Para ejecutarlo, desde la carpeta `animation-lab/` corré `npm ci` y `npm run dev`. Si clonaste únicamente este repositorio, tené en cuenta que la app es una carpeta compañera y no está incluida aquí; el catálogo de ejemplos sí está disponible en [`examples/`](examples/README.md).
+
 ## Inicio rápido
 
 1. Lee [la guía de instalación](docs/installation.md).
