@@ -22,7 +22,7 @@ MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 SKILL_NAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 IMPORT_FROM = re.compile(r"\bfrom\s+['\"]([^'\"]+)['\"]")
 SCRIPT_SOURCE = re.compile(r"<script\b[^>]*\bsrc=['\"]([^'\"]+)['\"][^>]*>", re.IGNORECASE)
-ALLOWED_JS_IMPORTS = {"react", "motion/react", "gsap", "@gsap/react"}
+ALLOWED_JS_IMPORTS = {"react", "motion/react", "gsap", "gsap/ScrollTrigger", "@gsap/react", "three"}
 
 
 def read_frontmatter(skill_file: Path) -> tuple[dict, str]:

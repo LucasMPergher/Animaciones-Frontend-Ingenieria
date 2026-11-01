@@ -11,6 +11,7 @@ Choose by the control model and output, not by trend or visual complexity alone.
 | Scroll-linked progress or reveal | CSS scroll/view timeline with feature detection, or existing Motion/GSAP scroll tooling | Use JS observers/tickers only if unsupported behavior must be equivalent or the effect needs richer runtime control. |
 | Shared-element or route transition | Platform View Transition API with fallback, or Motion presence in React | Use a router/framework integration where route lifecycle, focus, or data loading requires it. |
 | Animated vector artwork | Inline/external SVG with CSS or WAAPI | Use Lottie when the design is already authored/exported as a supported animation and needs faithful playback. |
+| Real 3D object, camera, lighting, or spatial interaction | Three.js/WebGL when true volumetric rendering is required | Use CSS 3D transforms or SVG for simple depth and a small number of flat layers. |
 | Dense particle/visualization workload | Canvas or WebGL only when profiling/design calls for it | Choose SVG/DOM for small accessible interfaces; keep a semantic DOM equivalent for Canvas content. |
 
 ## Selection checks
@@ -20,6 +21,8 @@ Choose by the control model and output, not by trend or visual complexity alone.
 - Prefer Motion for React animations driven by props/state, gestures, presence, and layout. Its API is React-specific.
 - Prefer GSAP for sequenced timelines, complex SVG, ScrollTrigger pin/scrub, or when a project already depends on it. GSAP itself is framework-agnostic.
 - Select Lottie only for supplied/approved animation data. It adds a runtime and may not expose all content as semantic DOM.
+- Choose Three.js when the effect needs actual 3D geometry, lighting, materials, or camera movement; create procedural geometry for a small demo when no approved model asset is available. Avoid a WebGL scene for a decorative transform that CSS can express.
+- For scroll-controlled 3D, let the existing scroll system update scene properties and render only while progress changes. Cap device pixel ratio, respond to container resizing, dispose GPU resources, and provide a semantic/static fallback if WebGL is unavailable or motion is reduced.
 - Treat CSS scroll-driven animations and View Transitions as progressively enhanced APIs unless the project's target matrix guarantees support.
 - If the requirement is unclear, propose a minimal option and explain the effect of alternatives before adding dependencies.
 
@@ -36,3 +39,6 @@ Do not recommend paid-only add-ons or hosted design services as a prerequisite. 
 - [CSS background-attachment (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-attachment)
 - [CSS scroll-driven animations (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations)
 - [View Transition API (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API)
+- [Three.js documentation](https://threejs.org/docs/)
+- [Three.js responsive rendering](https://threejs.org/manual/en/responsive.html)
+- [WebGLRenderer](https://threejs.org/docs/pages/WebGLRenderer.html)

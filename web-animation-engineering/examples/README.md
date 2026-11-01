@@ -10,11 +10,11 @@ Los componentes JSX necesitan una app React anfitriona. Crea esa app en un direc
 npm create vite@latest animation-lab -- --template react
 cd animation-lab
 npm install
-npm install motion
+npm install motion # para los ejemplos de Motion
 npm run dev
 ~~~
 
-Para probar **gsap-react/usegsap-component.jsx**, instala **npm install gsap @gsap/react** en esa app en vez de **motion**. No hace falta instalar las dos librerías si solo vas a ejecutar un ejemplo.
+Para probar **gsap-react/usegsap-component.jsx**, instala **npm install gsap @gsap/react**. Para **three/product-scroll.jsx**, instala **npm install three gsap @gsap/react**. Copia el CSS que acompaña al componente y ajusta su import si hace falta. No necesitas instalar Motion para esos dos ejemplos.
 
 | Ruta | Tecnología | Qué muestra |
 | --- | --- | --- |
@@ -38,6 +38,7 @@ Para probar **gsap-react/usegsap-component.jsx**, instala **npm install gsap @gs
 | [motion/shared-element.jsx](motion/shared-element.jsx) | React + Motion | Transición de tarjeta a detalle con imagen y título compartidos, retorno de foco y Escape. |
 | [motion/scroll-reveal.jsx](motion/scroll-reveal.jsx) | React + Motion | Movimiento ligado a scroll con useScroll y reduced motion. |
 | [motion/page-transition.jsx](motion/page-transition.jsx) | React + Motion | Entrada y salida visual con AnimatePresence. |
+| [three/product-scroll.jsx](three/product-scroll.jsx) | React + Three.js + GSAP ScrollTrigger | Producto 3D procedural con cámara y luces ligadas al scroll; ofrece una ilustración estática si WebGL no está disponible. |
 | [svg/path-draw](svg/path-draw/index.html) | SVG + CSS | Dibujo de path y representación final estática. |
 | [canvas/particle-field](canvas/particle-field/index.html) | Canvas | requestAnimationFrame, DPR, visibilidad y alternativa estática. |
 | [lottie/pulse](lottie/pulse/index.html) | Lottie | JSON local con control play/pause y reduced motion. |
@@ -69,6 +70,7 @@ Para probar **gsap-react/usegsap-component.jsx**, instala **npm install gsap @gs
 - **Shared element:** Motion conecta tarjeta y detalle con `layoutId`; Escape y el botón de regreso cierran la vista y devuelven el foco a la tarjeta inicial.
 - **Motion scroll:** useScroll y useTransform producen un valor de movimiento sin almacenar frames en estado React; reduced motion mantiene el contenido quieto.
 - **Page transition:** AnimatePresence conserva la salida del panel anterior; es una demo de estado local, no reemplaza un router.
+- **3D product story:** Three.js construye en código un frasco con materiales, luz y cámara. ScrollTrigger liga la rotación y la iluminación al progreso mientras la escena queda sticky; en móvil o con reduced motion, el producto queda quieto y el relato sigue disponible. La demo renderiza solo cuando cambia la escena y libera los recursos WebGL al desmontarse.
 - **SVG path:** stroke-dashoffset dibuja el vector y reduced motion deja el path completo.
 - **SVG morph + máscara:** GSAP interpola coordenadas compatibles dentro de un `clipPath`; los botones permiten repetir y reiniciar, y reduced motion muestra una forma estática.
 - **Canvas:** el loop usa delta de tiempo, limita DPR, se pausa cuando la pestaña queda oculta y no se inicia con reduced motion.

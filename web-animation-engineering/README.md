@@ -8,7 +8,7 @@ Sistema modular de Agent Skills para diseñar e implementar animaciones web mant
 
 `animation-lab` es la app compañera para abrir y probar las animaciones del catálogo. Funciona como una galería interactiva: elegís una tarjeta, ves la demo en la misma página y podés volver a ejecutarla cuando quieras. No genera animaciones automáticamente; sirve para entender cómo se ve cada patrón, qué lo activa y qué tecnologías usa antes de pedirlo o adaptarlo a un proyecto.
 
-Incluye 23 demos: 15 páginas HTML y 8 componentes React. Podés filtrarlas por CSS y APIs del navegador, GSAP, Motion, React + GSAP y Lottie. Según la demo, la animación comienza al abrirla, al desplazarte o al interactuar con un botón o control. El catálogo cubre, entre otros, revelados de texto, navegación animada, historias por scroll, paneles horizontales fijados, fondos fijos, carruseles con arrastre e inercia, transiciones de elemento compartido, morphs SVG, Canvas y microinteracciones.
+Incluye 24 demos: 15 páginas HTML y 9 componentes React. Podés filtrarlas por CSS y APIs del navegador, GSAP, Motion, React + GSAP, Three.js/WebGL y Lottie. Según la demo, la animación comienza al abrirla, al desplazarte o al interactuar con un botón o control. El catálogo cubre, entre otros, revelados de texto, navegación animada, historias por scroll, paneles horizontales fijados, fondos fijos, carruseles con arrastre e inercia, presentaciones de producto 3D, transiciones de elemento compartido, morphs SVG, Canvas y microinteracciones.
 
 El laboratorio ayuda a:
 
@@ -36,7 +36,7 @@ En el workspace completo, `animation-lab/` está junto a este directorio y toma 
 | **animation-gsap-react** | Ciclo de vida de GSAP en React y componentes derivados. |
 | **animation-motion** | Animaciones declarativas de React con Motion: variants, gestos, layout, scroll y presencia. |
 | **animation-css** | Transitions, keyframes, scroll-driven animations y View Transitions con mejoras progresivas. |
-| **animation-visual-assets** | Elegir y conectar SVG, Canvas o Lottie sin sobrecargar la página. |
+| **animation-visual-assets** | Elegir y conectar SVG, Canvas, Three.js/WebGL o Lottie sin sobrecargar la página. |
 | **animation-quality** | Revisar accesibilidad, reduced motion, rendimiento, SSR, limpieza y compatibilidad. |
 
 ## Criterios del sistema

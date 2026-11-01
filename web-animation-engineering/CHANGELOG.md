@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0 — 2026-11-01
+
+- Añadida una presentación de producto 3D procedural con Three.js y scroll controlado por GSAP ScrollTrigger.
+- Ampliadas animation-core y animation-visual-assets para orientar la elección, integración, accesibilidad y limpieza de escenas WebGL/Three.js.
+- Añadido Three.js a Motion Lab y al validador; el catálogo ahora incluye 24 demos.
+
 ## 1.2.0 — 2026-11-01
 
 - Añadido un carrusel React + Motion arrastrable con inercia, ajuste a paradas, controles de teclado y alternativa para movimiento reducido.

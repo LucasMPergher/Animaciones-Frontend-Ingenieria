@@ -8,6 +8,7 @@ Inspect the actual app and follow its existing boundary. A tool name alone does 
 - In Next.js App Router, pages/layouts are Server Components by default. Put event handlers, Motion components, and browser APIs in the smallest required Client Component boundary; keep surrounding content server-rendered when possible.
 - Never read **window**, **document**, or layout measurements at module evaluation. Render meaningful content before hydration; treat animation as enhancement.
 - For GSAP, read **animation-gsap-react**. For Motion, read **animation-motion** and check the installed package entry point.
+- For Three.js, create the renderer and inspect browser capabilities inside a client effect; keep the canvas decorative and the product description in DOM. Dispose geometry, materials, textures, renderer, observers, and listeners on teardown. In Next.js, isolate this code in the smallest client component.
 
 ## Vite
 

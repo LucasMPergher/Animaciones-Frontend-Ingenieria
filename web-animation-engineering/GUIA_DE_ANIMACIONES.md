@@ -51,6 +51,14 @@ Mirá la demo de [fondo fijo](examples/css/fixed-background/index.html). Si quer
 
 Ejemplos: [dibujo de un path SVG](examples/svg/path-draw/index.html), [morph SVG con máscara de recorte](examples/gsap/svg-morph-mask/index.html), [campo de partículas](examples/canvas/particle-field/index.html) y [animación Lottie](examples/lottie/pulse/index.html).
 
+### Escenas 3D y presentación de producto
+
+- Presentar un producto procedural con geometría, materiales, iluminación y cámara en Three.js.
+- Hacer que un objeto gire o cambie de luz al avanzar por una historia de scroll.
+- Mantener el texto y los capítulos en HTML para que la escena WebGL no sea la única forma de entender el contenido.
+
+Mirá la demo de [producto 3D con scroll](examples/three/product-scroll.jsx). Usa Three.js porque necesita volumen, materiales y cámara; para una profundidad decorativa sencilla alcanza con CSS 3D.
+
 ### React y secuencias más elaboradas
 
 - Coordinar la entrada de varios componentes con variantes y stagger.
@@ -90,6 +98,8 @@ Si no tenés preferencias técnicas, podés decir: **«Elegí la forma más simp
 
 > Transformá este path SVG en una segunda forma y usalo como máscara para revelar la ilustración de fondo. Conservá un estado estático útil para movimiento reducido.
 
+> Armá una presentación 3D de producto en Three.js. Hacé que la cámara y el objeto acompañen tres capítulos del scroll, creá el modelo con geometría procedural y mantené una vista estática accesible en móvil o con movimiento reducido.
+
 > Dibujá este SVG al entrar en pantalla. Mantené el gráfico completo como estado final y dejalo estático con movimiento reducido.
 
 > Revisá por qué esta animación no se activa en móvil. Corregí el problema sin reemplazar el framework ni las convenciones que ya usa el proyecto.
@@ -104,4 +114,4 @@ Si no tenés preferencias técnicas, podés decir: **«Elegí la forma más simp
 
 ## Probar las demos
 
-La [página de ejemplos](examples/README.md) explica cómo servir las demos HTML y ejecutar los componentes React. La galería Motion Lab integra las 23 demos en tarjetas; está en el directorio hermano `animation-lab/`, con sus instrucciones en `animation-lab/README.md`.
+La [página de ejemplos](examples/README.md) explica cómo servir las demos HTML y ejecutar los componentes React. La galería Motion Lab integra las 24 demos en tarjetas; está en el directorio hermano `animation-lab/`, con sus instrucciones en `animation-lab/README.md`.
