@@ -19,18 +19,20 @@ Podés ver ejemplos de [entrada de hero](examples/css/hero-reveal/index.html), [
 - Animar un menú desplegable y hacer que se cierre con Escape.
 - Cambiar entre imágenes con un fundido.
 - Reordenar tarjetas con una transición que acompañe el nuevo lugar.
+- Expandir una tarjeta a una vista de detalle haciendo que la imagen y el título mantengan su continuidad.
 - Transicionar entre vistas o estados de una interfaz.
 
-Ejemplos: [botón interactivo con Motion](examples/motion/interactive-button.jsx), [navegación animada con GSAP](examples/gsap/animated-navigation/index.html), [cambio entre imágenes](examples/css/image-transition/index.html), [layout de tarjetas](examples/motion/card-layout.jsx) y [transición de vistas](examples/motion/page-transition.jsx).
+Ejemplos: [botón interactivo con Motion](examples/motion/interactive-button.jsx), [navegación animada con GSAP](examples/gsap/animated-navigation/index.html), [cambio entre imágenes](examples/css/image-transition/index.html), [layout de tarjetas](examples/motion/card-layout.jsx), [transición de vistas](examples/motion/page-transition.jsx) y [elemento compartido entre tarjeta y detalle](examples/motion/shared-element.jsx).
 
 ### Movimiento ligado al scroll
 
 - Hacer que un elemento aparezca cuando llega al viewport.
 - Desplazar capas a distintas velocidades para crear parallax.
 - Fijar una sección y recorrer sus paneles en horizontal mientras se hace scroll.
+- Contar una historia en capítulos con una escena fijada, progreso ligado al scroll y puntos de ajuste entre secciones.
 - Vincular el progreso visual de una barra o ilustración al avance de la página.
 
-Ejemplos: [reveal CSS](examples/css/scroll-reveal/index.html), [parallax](examples/gsap/parallax/index.html), [sección horizontal fijada](examples/gsap/pinned-horizontal/index.html) y [scroll en React con Motion](examples/motion/scroll-reveal.jsx).
+Ejemplos: [reveal CSS](examples/css/scroll-reveal/index.html), [parallax](examples/gsap/parallax/index.html), [sección horizontal fijada](examples/gsap/pinned-horizontal/index.html), [relato por capítulos](examples/gsap/scroll-story/index.html) y [scroll en React con Motion](examples/motion/scroll-reveal.jsx).
 
 ### Fondo fijo con contenido por delante
 
@@ -42,20 +44,21 @@ Mirá la demo de [fondo fijo](examples/css/fixed-background/index.html). Si quer
 
 ### SVG, Canvas y Lottie
 
-- Dibujar un trazo SVG como si se estuviera escribiendo.
+- Dibujar un trazo SVG como si se estuviera escribiendo, transformar una forma vectorial en otra o usarla como máscara para revelar una imagen.
 - Crear una escena de partículas para un fondo decorativo.
 - Reproducir una animación Lottie que ya tengas, con controles de pausa y reproducción.
 
-Ejemplos: [dibujo de un path SVG](examples/svg/path-draw/index.html), [campo de partículas](examples/canvas/particle-field/index.html) y [animación Lottie](examples/lottie/pulse/index.html).
+Ejemplos: [dibujo de un path SVG](examples/svg/path-draw/index.html), [morph SVG con máscara de recorte](examples/gsap/svg-morph-mask/index.html), [campo de partículas](examples/canvas/particle-field/index.html) y [animación Lottie](examples/lottie/pulse/index.html).
 
 ### React y secuencias más elaboradas
 
 - Coordinar la entrada de varios componentes con variantes y stagger.
+- Conectar una tarjeta de una colección con su vista de detalle usando un elemento compartido.
 - Animar presencia, gestos, cambios de estado o reordenamiento de elementos.
 - Crear una secuencia con tiempos y pasos coordinados.
 - Integrar GSAP en React con limpieza al desmontar y respeto por movimiento reducido.
 
-Ejemplos: [stagger con Motion](examples/motion/stagger-list.jsx), [GSAP en React](examples/gsap-react/usegsap-component.jsx) y [botón interactivo con Motion](examples/motion/interactive-button.jsx).
+Ejemplos: [stagger con Motion](examples/motion/stagger-list.jsx), [elemento compartido con Motion](examples/motion/shared-element.jsx), [GSAP en React](examples/gsap-react/usegsap-component.jsx) y [botón interactivo con Motion](examples/motion/interactive-button.jsx).
 
 ## Cómo describir lo que querés
 
@@ -78,7 +81,11 @@ Si no tenés preferencias técnicas, podés decir: **«Elegí la forma más simp
 
 > Animá este menú al abrirlo y cerrarlo. El botón debe anunciar el estado, Escape debe cerrarlo y la navegación tiene que seguir funcionando sin la animación.
 
-> Al cambiar de vista, hacé una transición breve entre el contenido anterior y el nuevo. Respetá el router que ya usa el proyecto y quitá el movimiento si el usuario lo solicita.
+> Al abrir el detalle de una tarjeta, hacé que su imagen y su título viajen hasta la nueva vista y vuelvan al cerrar. Mantené el foco, permití cerrar con Escape y respetá movimiento reducido.
+
+> Armá un relato de tres capítulos controlado por el scroll: fijá la escena en escritorio, coordiná los cambios con una timeline y apilá el contenido en móvil.
+
+> Transformá este path SVG en una segunda forma y usalo como máscara para revelar la ilustración de fondo. Conservá un estado estático útil para movimiento reducido.
 
 > Dibujá este SVG al entrar en pantalla. Mantené el gráfico completo como estado final y dejalo estático con movimiento reducido.
 
@@ -94,4 +101,4 @@ Si no tenés preferencias técnicas, podés decir: **«Elegí la forma más simp
 
 ## Probar las demos
 
-La [página de ejemplos](examples/README.md) explica cómo servir las demos HTML y ejecutar los componentes React. La galería Motion Lab integra las 19 demos en tarjetas; está en el directorio hermano `animation-lab/`, con sus instrucciones en `animation-lab/README.md`.
+La [página de ejemplos](examples/README.md) explica cómo servir las demos HTML y ejecutar los componentes React. La galería Motion Lab integra las 22 demos en tarjetas; está en el directorio hermano `animation-lab/`, con sus instrucciones en `animation-lab/README.md`.

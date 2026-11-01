@@ -26,12 +26,15 @@ Para probar **gsap-react/usegsap-component.jsx**, instala **npm install gsap @gs
 | [css/fixed-background](css/fixed-background/index.html) | CSS | Fondo ilustrado fijo mientras el contenido del primer plano se desplaza. |
 | [gsap/parallax](gsap/parallax/index.html) | GSAP + ScrollTrigger | Parallax atado a scroll, solo con movimiento permitido. |
 | [gsap/pinned-horizontal](gsap/pinned-horizontal/index.html) | GSAP + ScrollTrigger | Sección horizontal amplia; contenido apilado en móvil/reduced motion. |
+| [gsap/scroll-story](gsap/scroll-story/index.html) | GSAP + ScrollTrigger | Historia de tres capítulos con escena fijada, timeline scrub y snap; en móvil el contenido vuelve al flujo normal. |
 | [gsap/text-reveal](gsap/text-reveal/index.html) | GSAP | Entrada de palabras con etiqueta accesible única. |
 | [gsap/animated-navigation](gsap/animated-navigation/index.html) | GSAP | Menú desplegable con estado ARIA y controles semánticos. |
+| [gsap/svg-morph-mask](gsap/svg-morph-mask/index.html) | GSAP + SVG | Morph de coordenadas compatibles que recorta y revela una ilustración; incluye repetición y estado reducido sin plugin adicional. |
 | [gsap-react/usegsap-component.jsx](gsap-react/usegsap-component.jsx) | React + GSAP | Scope, limpieza, reduced motion y callback contextSafe. |
 | [motion/stagger-list.jsx](motion/stagger-list.jsx) | React + Motion | Variants coordinadas de padre e hijos. |
 | [motion/interactive-button.jsx](motion/interactive-button.jsx) | React + Motion | Estados de hover/tap y estado accesible del botón. |
 | [motion/card-layout.jsx](motion/card-layout.jsx) | React + Motion | Reordenamiento con animación de layout. |
+| [motion/shared-element.jsx](motion/shared-element.jsx) | React + Motion | Transición de tarjeta a detalle con imagen y título compartidos, retorno de foco y Escape. |
 | [motion/scroll-reveal.jsx](motion/scroll-reveal.jsx) | React + Motion | Movimiento ligado a scroll con useScroll y reduced motion. |
 | [motion/page-transition.jsx](motion/page-transition.jsx) | React + Motion | Entrada y salida visual con AnimatePresence. |
 | [svg/path-draw](svg/path-draw/index.html) | SVG + CSS | Dibujo de path y representación final estática. |
@@ -54,14 +57,17 @@ Para probar **gsap-react/usegsap-component.jsx**, instala **npm install gsap @gs
 - **Image transition:** el estado del botón cambia una clase y aria-pressed; CSS interpola opacity y scale entre dos composiciones.
 - **GSAP parallax:** matchMedia crea los triggers solo con movimiento permitido; ScrollTrigger liga el progreso al scroll.
 - **Pinned horizontal:** una sola sección y timeline usan pin/scrub en pantallas amplias; móvil y reduced motion conservan los paneles en flujo vertical.
+- **Scroll story:** una timeline de tres capítulos fija la escena en escritorio, liga los cambios al scroll y hace snap a etiquetas; móvil conserva los textos en flujo y reduced motion no crea el pin.
 - **Text reveal:** GSAP escalona palabras; aria-label proporciona una frase semántica mientras los fragmentos visuales se ocultan del árbol accesible.
 - **Animated navigation:** un botón nativo controla aria-expanded, Escape cierra el menú y GSAP solo anima el estado visual.
 - **GSAP React:** useGSAP limita los selectores al ref, revierte el contexto y contextSafe agrupa la animación del callback.
 - **Motion stagger:** variants propagan el estado y delayChildren con stagger coordina los hijos; useReducedMotion elimina el desplazamiento.
 - **Interactive button:** hover/tap son feedback adicional; el botón nativo mantiene aria-pressed y su estado funcional.
 - **Card layout:** la lista de datos controla el orden, keys son estables y layout anima los cambios geométricos.
+- **Shared element:** Motion conecta tarjeta y detalle con `layoutId`; Escape y el botón de regreso cierran la vista y devuelven el foco a la tarjeta inicial.
 - **Motion scroll:** useScroll y useTransform producen un valor de movimiento sin almacenar frames en estado React; reduced motion mantiene el contenido quieto.
 - **Page transition:** AnimatePresence conserva la salida del panel anterior; es una demo de estado local, no reemplaza un router.
 - **SVG path:** stroke-dashoffset dibuja el vector y reduced motion deja el path completo.
+- **SVG morph + máscara:** GSAP interpola coordenadas compatibles dentro de un `clipPath`; los botones permiten repetir y reiniciar, y reduced motion muestra una forma estática.
 - **Canvas:** el loop usa delta de tiempo, limita DPR, se pausa cuando la pestaña queda oculta y no se inicia con reduced motion.
 - **Lottie:** el JSON de muestra es local; el botón pausa/reanuda, el player se destruye al salir de la página y reduced motion empieza estático.

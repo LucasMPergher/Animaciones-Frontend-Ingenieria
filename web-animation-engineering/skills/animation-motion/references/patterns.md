@@ -16,6 +16,7 @@ Use syntax matching the installed Motion package. Current React documentation im
 ## Layout and presence
 
 - Add **layout** when an element's actual layout changes and a transform-based transition clarifies that change. Avoid placing two libraries in control of the same transform.
+- Use a stable **layoutId** to connect a shared visual element between separate UI states. Keep the transition within a shared layout boundary and preserve keyboard focus when returning to the source state.
 - Give entering/leaving children stable, unique keys. Keep **AnimatePresence** mounted around the conditional child and read its current **mode** options before use.
 - For route transitions, coordinate with the router and focus management; a visual transition alone does not implement navigation.
 
@@ -35,5 +36,6 @@ Motion is React-specific. Keep imports targeted and consult current documentatio
 - [Scroll](https://motion.dev/docs/react-use-scroll)
 - [Reduced motion](https://motion.dev/docs/react-use-reduced-motion)
 - [AnimatePresence](https://motion.dev/docs/react-animate-presence)
+- [Layout animations and shared elements](https://motion.dev/docs/react-layout-animations)
 - [Accessibility](https://motion.dev/docs/react-accessibility)
 - [Bundle size](https://motion.dev/docs/react-reduce-bundle-size)

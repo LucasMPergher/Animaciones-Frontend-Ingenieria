@@ -9,6 +9,7 @@ Use when the requested motion is primarily an illustrated/vector asset, a dense 
 
 - Read [references/svg-canvas-lottie.md](references/svg-canvas-lottie.md) and confirm the selected renderer supports the provided asset.
 - Prefer SVG for modest vector scenes and DOM/CSS for interface elements. Keep meaningful vector content labeled or accompanied by semantic text.
+- For SVG morphs, use compatible path geometry or a verified normalizer; use clip paths or masks to reveal artwork while keeping its meaningful description outside the animated geometry.
 - Choose Canvas only when scene density or drawing requirements justify an immediate-mode renderer. Provide equivalent DOM information for meaningful content, scale for device pixel ratio, and stop the render loop when inactive.
 - Choose Lottie when supplied/exported animation needs faithful playback. Verify renderer compatibility, asset size, licensing/provenance, and whether its content needs accessible text outside the canvas.
 - Pause or stop playback for reduced motion, hidden pages, teardown, and user controls where relevant.

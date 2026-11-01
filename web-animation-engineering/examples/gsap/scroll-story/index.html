@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historia guiada por scroll con GSAP</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body { margin: 0; }
+    .intro, .outro { width: min(76rem, calc(100% - 3rem)); margin: 0 auto; display: grid; align-content: center; min-height: 75svh; padding: 5rem 0; }
+    .eyebrow { margin: 0 0 1rem; color: #88f0c8; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, p { margin-top: 0; }
+    h1 { max-width: 11ch; margin-bottom: 1rem; font-size: clamp(3.5rem, 9vw, 7.5rem); line-height: .92; letter-spacing: -.075em; }
+    .intro-copy, .outro p { max-width: 36rem; color: #b9c4dd; font-size: 1rem; line-height: 1.7; }
+    .scroll-cue { margin-top: 2rem; color: #88f0c8; font-size: .8rem; letter-spacing: .08em; }
+    .story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); width: min(88rem, calc(100% - 3rem)); margin: 0 auto; border-block: 1px solid #35405a; }
+    .story-stage { position: relative; align-self: start; height: 100svh; min-height: min(28rem, 100svh); overflow: hidden; border-right: 1px solid #35405a; background: radial-gradient(ellipse at 50% 50%, #202a37 0, #10131c 72%); }
+    .stage-grid { position: absolute; inset: 0; opacity: .35; background-image: linear-gradient(#ffffff09 1px, transparent 1px), linear-gradient(90deg, #ffffff09 1px, transparent 1px); background-size: 36px 36px; mask-image: radial-gradient(ellipse at center, black, transparent 72%); }
+    .stage-index { position: absolute; z-index: 4; top: 2rem; left: 2rem; color: #aeb8d1; font: .7rem ui-monospace, monospace; letter-spacing: .12em; }
+    .stage-note { position: absolute; z-index: 4; right: 2rem; bottom: 2rem; left: 2rem; display: flex; justify-content: space-between; gap: 1rem; color: #aeb8d1; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+    .stage-note span:last-child { color: #88f0c8; }
+    .stage-art { position: absolute; inset: 0; display: grid; place-items: center; }
+    .stage-art:not(.scene-origin) { visibility: hidden; opacity: 0; }
+    .orbit { position: absolute; width: min(62%, 25rem); aspect-ratio: 1; border: 1px solid #d9e6ff3d; border-radius: 50%; transform: rotate(-28deg) scaleY(.48); }
+    .orbit::after { content: ''; position: absolute; top: 6%; right: 13%; width: 12px; height: 12px; border-radius: 50%; background: #f5f7ff; box-shadow: 0 0 24px #fff8; }
+    .orbit-two { width: min(47%, 19rem); transform: rotate(38deg) scaleY(.7); border-color: #88f0c86b; }
+    .core { width: min(34%, 14rem); aspect-ratio: 1; border-radius: 35%; background: #ff866b; box-shadow: 0 0 90px #ff866b55; transform: rotate(25deg); }
+    .scene-signal .core { border-radius: 50%; background: #88f0c8; box-shadow: 0 0 100px #88f0c866; }
+    .scene-arrival .core { border-radius: 20%; background: #8da7ff; box-shadow: 0 0 100px #8da7ff66; transform: rotate(45deg) scale(.86); }
+    .scene-signal .orbit-two { width: min(61%, 25rem); border-style: dashed; transform: rotate(-24deg) scaleY(.78); }
+    .scene-arrival .orbit { width: min(74%, 30rem); transform: rotate(65deg) scaleY(.35); }
+    .progress-track { position: absolute; z-index: 5; top: 0; right: 0; left: 0; height: 3px; background: #ffffff14; }
+    .progress-fill { width: 100%; height: 100%; background: #88f0c8; transform: scaleX(0); transform-origin: left center; }
+    .story-chapters { display: grid; grid-template-rows: repeat(3, minmax(100svh, auto)); }
+    .chapter { display: flex; flex-direction: column; justify-content: center; min-height: 100svh; padding: clamp(2rem, 6vw, 5.5rem); border-bottom: 1px solid #35405a; }
+    .chapter:last-child { border-bottom: 0; }
+    .chapter-number { margin-bottom: 1.4rem; color: #88f0c8; font: .75rem ui-monospace, monospace; letter-spacing: .12em; }
+    .chapter h2 { max-width: 10ch; margin-bottom: 1rem; font-size: clamp(2.6rem, 5.6vw, 5rem); line-height: .96; letter-spacing: -.07em; }
+    .chapter p { max-width: 27rem; margin-bottom: 0; color: #b9c4dd; font-size: .96rem; line-height: 1.75; }
+    .chapter-tag { margin-top: 2rem; color: #777f94; font: .68rem ui-monospace, monospace; letter-spacing: .09em; text-transform: uppercase; }
+    .outro { min-height: 68svh; }
+    @media (max-width: 760px) {
+      .intro, .outro { width: min(100% - 2rem, 42rem); min-height: 62svh; }
+      .story { display: block; width: 100%; }
+      .story-stage { display: none; }
+      .story-chapters { display: block; }
+      .chapter { min-height: 72svh; padding: 3.5rem max(1.5rem, calc((100% - 42rem) / 2)); }
+      .chapter h2 { font-size: clamp(2.7rem, 12vw, 4.5rem); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .stage-art:not(.scene-origin) { display: none; }
+      .progress-track { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="intro">
+    <p class="eyebrow">GSAP · ScrollTrigger · relato por capítulos</p>
+    <h1>El recorrido también cuenta.</h1>
+    <p class="intro-copy">Tres capítulos pasan por una escena visual fija. En escritorio, la ilustración y el indicador responden al avance del scroll; el texto conserva su recorrido normal.</p>
+    <p class="scroll-cue">↓ Desplazate para explorar</p>
+  </header>
+
+  <main>
+    <section class="story" aria-label="Historia en tres capítulos">
+      <div class="story-stage" aria-hidden="true">
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="stage-grid"></div>
+        <span class="stage-index">ESTUDIO 01 — 03</span>
+        <div class="stage-art scene-origin">
+          <span class="orbit"></span><span class="orbit orbit-two"></span><span class="core"></span>
+        </div>
+        <div class="stage-art scene-signal">
+          <span class="orbit"></span><span class="orbit orbit-two"></span><span class="core"></span>
+        </div>
+        <div class="stage-art scene-arrival">
+          <span class="orbit"></span><span class="orbit orbit-two"></span><span class="core"></span>
+        </div>
+        <div class="stage-note"><span>Una idea en movimiento</span><span id="stage-count">01 / 03</span></div>
+      </div>
+      <div class="story-chapters">
+        <article class="chapter">
+          <span class="chapter-number">01 — ORIGEN</span>
+          <h2>Todo empieza con una señal.</h2>
+          <p>El primer capítulo presenta el motivo. Una composición quieta deja que el contenido se entienda antes de que empiece el movimiento.</p>
+          <span class="chapter-tag">Entrada · escala · luz</span>
+        </article>
+        <article class="chapter">
+          <span class="chapter-number">02 — TRANSFORMACIÓN</span>
+          <h2>La señal encuentra su ritmo.</h2>
+          <p>El scroll funciona como línea de tiempo: la escena cambia a medida que avanzás y cada capítulo ocupa un punto reconocible del recorrido.</p>
+          <span class="chapter-tag">Secuencia · scrub · progreso</span>
+        </article>
+        <article class="chapter">
+          <span class="chapter-number">03 — DESTINO</span>
+          <h2>El movimiento llega a una forma.</h2>
+          <p>La escena cierra junto con el relato. En móvil y con movimiento reducido, los capítulos se leen en flujo normal sin depender del efecto fijado.</p>
+          <span class="chapter-tag">Cierre · alternativa estática</span>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="outro">
+    <p class="eyebrow">FIN DEL RECORRIDO</p>
+    <p>Una secuencia por scroll puede coordinar arte y contenido, pero la historia sigue completa cuando el pinning no está disponible.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+
+    media.add("(min-width: 761px) and (min-height: 420px) and (prefers-reduced-motion: no-preference)", () => {
+      const chapters = document.querySelector(".story-chapters");
+      const scenes = gsap.utils.toArray(".stage-art");
+      const stageCount = document.querySelector("#stage-count");
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".story",
+          start: "top top",
+          end: () => "+=" + Math.max(1, chapters.scrollHeight - window.innerHeight),
+          pin: ".story-stage",
+          pinSpacing: false,
+          scrub: 0.8,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          snap: {
+            snapTo: "labelsDirectional",
+            duration: { min: 0.16, max: 0.55 },
+            delay: 0.08,
+            ease: "power1.inOut"
+          }
+        }
+      });
+
+      gsap.set(scenes.slice(1), { autoAlpha: 0, scale: 0.9 });
+      timeline
+        .addLabel("origin", 0)
+        .to(".progress-fill", { scaleX: 0.5, duration: 1, ease: "none" }, 0)
+        .to(scenes[0], { autoAlpha: 0, scale: 0.88, duration: 0.28 }, 0.72)
+        .fromTo(scenes[1], { autoAlpha: 0, scale: 0.88, rotation: -7 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.3 }, 0.72)
+        .call(() => { stageCount.textContent = "02 / 03"; }, null, 0.95)
+        .addLabel("transformation", 1)
+        .to(".progress-fill", { scaleX: 1, duration: 1, ease: "none" }, 1)
+        .to(scenes[1], { autoAlpha: 0, scale: 1.08, duration: 0.28 }, 1.72)
+        .fromTo(scenes[2], { autoAlpha: 0, scale: 0.88, rotation: 8 }, { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.3 }, 1.72)
+        .call(() => { stageCount.textContent = "03 / 03"; }, null, 1.95)
+        .addLabel("arrival", 2);
+
+      return () => {
+        timeline.kill();
+        stageCount.textContent = "01 / 03";
+      };
+    });
+
+    window.addEventListener("pagehide", () => media.revert(), { once: true });
+  </script>
+</body>
+</html>

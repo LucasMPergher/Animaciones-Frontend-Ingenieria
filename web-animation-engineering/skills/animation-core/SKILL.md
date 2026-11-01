@@ -1,6 +1,6 @@
 ---
 name: animation-core
-description: Plan and implement web animations, including fixed backgrounds, by inspecting the project, choosing CSS, Motion, GSAP, SVG, Canvas, or Lottie, and routing to focused animation skills.
+description: Plan and implement web animations, including fixed backgrounds, scroll narratives, shared-element transitions, and SVG morphs, by inspecting the project and choosing CSS, Motion, GSAP, SVG, Canvas, or Lottie.
 ---
 
 # Animation Core
@@ -9,11 +9,11 @@ Use this skill when a request adds, changes, reviews, or debugs animation in a w
 
 ## Workflow
 
-1. Identify the requested pattern and trigger: reveal, stagger, gesture, fixed background with scrolling foreground, scroll-linked effect, pinning, text, SVG, canvas, navigation, or page transition. Keep fixed backgrounds distinct from parallax and pinned sections.
+1. Identify the requested pattern and trigger: reveal, stagger, gesture, fixed background with scrolling foreground, scroll-linked effect, multi-chapter scroll narrative, pinning, shared-element transition, text, SVG morph or mask, canvas, navigation, or page transition. Keep fixed backgrounds distinct from parallax and pinned sections.
 2. Assess complexity and constraints: choreography, input type, browser targets, reduced motion, content importance, and whether a library is warranted.
 3. Inspect the project before choosing APIs: framework/version, components/routes, styles, package manager, existing animation dependencies, SSR/build boundaries, and local conventions.
 4. Select the smallest suitable technology. Read [references/technology-selection.md](references/technology-selection.md). Never default to GSAP or add a dependency before checking what is already available.
-5. Consult only the relevant specialist: **animation-css**, **animation-gsap**, **animation-gsap-react**, **animation-motion**, or **animation-visual-assets**. Read [references/framework-integration.md](references/framework-integration.md) for framework/SSR boundaries and consult **animation-quality** for motion/accessibility/lifecycle review.
+5. Consult only the relevant specialist: **animation-css**, **animation-gsap**, **animation-gsap-react**, **animation-motion**, or **animation-visual-assets**. Use **animation-gsap** for labeled scroll narratives and compatible-path SVG choreography; use **animation-motion** for React shared elements via layout transitions; use **animation-visual-assets** when the artwork or mask is the primary output. Read [references/framework-integration.md](references/framework-integration.md) for framework/SSR boundaries and consult **animation-quality** for motion/accessibility/lifecycle review.
 6. State a short implementation plan when the change spans multiple files or has meaningful trade-offs. Keep simple changes direct.
 7. Implement within the project's framework and conventions. Preserve semantic content and keep one system in control of any given animated property.
 8. Review responsive behavior, reduced motion, keyboard/touch behavior, cleanup, SSR, and performance.

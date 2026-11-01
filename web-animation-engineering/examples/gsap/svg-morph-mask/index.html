@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Morph SVG y revelado con máscara</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #10131c; color: #f5f7ff; }
+    * { box-sizing: border-box; }
+    body { min-height: 100svh; margin: 0; display: grid; place-items: center; padding: clamp(1rem, 4vw, 3rem); }
+    main { width: min(72rem, 100%); }
+    .eyebrow { margin: 0 0 1rem; color: #88f0c8; font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { max-width: 12ch; margin: 0; font-size: clamp(2.8rem, 7vw, 6rem); line-height: .94; letter-spacing: -.075em; }
+    .intro { max-width: 43rem; margin: 1.25rem 0 2rem; color: #b9c4dd; line-height: 1.7; }
+    .demo { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(15rem, .8fr); overflow: hidden; border: 1px solid #35405a; border-radius: 1.25rem; background: #171d2a; }
+    .art-panel { min-height: 25rem; display: grid; align-content: center; padding: clamp(1rem, 3vw, 2rem); background: radial-gradient(ellipse at center, #242d3c, #121723 72%); }
+    svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .copy-panel { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 4vw, 3rem); border-left: 1px solid #35405a; }
+    .copy-panel h2 { margin: 0 0 .9rem; font-size: 1.4rem; letter-spacing: -.04em; }
+    .copy-panel p { margin: 0; color: #b9c4dd; font-size: .9rem; line-height: 1.7; }
+    .controls { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+    button { min-height: 2.7rem; border: 1px solid #88f0c86b; border-radius: 999px; padding: 0 1rem; color: #10131c; background: #88f0c8; font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer; }
+    button.secondary { color: #d7dcef; background: transparent; border-color: #536079; }
+    button:hover:not(:disabled) { filter: brightness(1.08); }
+    button:focus-visible { outline: 3px solid #f5f7ff; outline-offset: 3px; }
+    button:disabled { cursor: not-allowed; opacity: .7; }
+    .status { min-height: 2.8em; margin-top: 1rem !important; color: #88f0c8 !important; font-size: .76rem !important; }
+    .footnote { margin: 1rem 0 0; color: #838da4; font-size: .73rem; line-height: 1.6; }
+    @media (max-width: 700px) {
+      .demo { grid-template-columns: 1fr; }
+      .art-panel { min-height: 16rem; }
+      .copy-panel { border-top: 1px solid #35405a; border-left: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+      button { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">GSAP · SVG · PATH MORPH + CLIP PATH</p>
+    <h1>Una forma puede revelar otra escena.</h1>
+    <p class="intro">El contorno cambia mientras recorta la ilustración que hay debajo. GSAP anima un progreso y, en cada paso, se interpolan las coordenadas compatibles del contorno sin agregar un plugin.</p>
+    <section class="demo" aria-label="Demostración de morph SVG">
+      <div class="art-panel">
+        <svg viewBox="0 0 800 540" role="img" aria-labelledby="art-title art-description">
+          <title id="art-title">Ilustración revelada por una máscara SVG cambiante</title>
+          <desc id="art-description">Un sol y una serie de montañas aparecen dentro de una forma que se transforma entre círculo, destello y forma orgánica.</desc>
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fd9b69" />
+              <stop offset=".55" stop-color="#8d6de4" />
+              <stop offset="1" stop-color="#3b5e87" />
+            </linearGradient>
+            <clipPath id="art-mask" clipPathUnits="userSpaceOnUse">
+              <path id="morph-path" d="M 400.0 105.0 L 466.9 118.5 L 523.7 156.3 L 561.6 213.0 L 575.0 280.0 L 561.6 347.0 L 523.7 403.7 L 466.9 441.5 L 400.0 455.0 L 333.1 441.5 L 276.3 403.7 L 238.4 347.0 L 225.0 280.0 L 238.4 213.0 L 276.3 156.3 L 333.1 118.5 Z" />
+            </clipPath>
+          </defs>
+          <g clip-path="url(#art-mask)">
+            <rect width="800" height="540" fill="url(#sky)" />
+            <circle cx="535" cy="175" r="72" fill="#ffe7a8" opacity=".95" />
+            <circle cx="535" cy="175" r="105" fill="#ffe7a8" opacity=".12" />
+            <path d="M0 365 130 258l102 91 113-155 126 157 80-80 121 113 128-120v276H0Z" fill="#33465c" />
+            <path d="m0 425 157-110 131 88 143-126 118 106 103-80 148 103v134H0Z" fill="#1d3444" />
+            <path d="m0 471 171-89 122 76 136-108 119 92 122-58 130 58v98H0Z" fill="#12272e" />
+            <path d="M0 499h800v41H0z" fill="#0d1c25" />
+            <g fill="#f6f3e8" font-family="ui-monospace, monospace">
+              <text x="78" y="112" font-size="16" letter-spacing="4">FIELD NOTES / 01</text>
+              <text x="78" y="470" font-size="13" letter-spacing="3" opacity=".76">LIGHT · FORM · LANDSCAPE</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="copy-panel">
+        <p class="eyebrow">GEOMETRÍA EN TRANSICIÓN</p>
+        <h2>Círculo → destello → forma orgánica</h2>
+        <p>La misma máscara modifica el contorno y deja ver el paisaje en distintas composiciones. La ilustración completa también tiene una descripción accesible fuera de la animación.</p>
+        <div class="controls">
+          <button id="replay" type="button">Repetir morph</button>
+          <button id="reset" class="secondary" type="button">Volver al círculo</button>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite">La forma se anima al abrir la demo. Usa los controles para repetirla o volver al inicio.</p>
+      </div>
+    </section>
+    <p class="footnote">En movimiento reducido se muestra una forma estática. En esta demo cada path conserva la misma estructura; para formas con geometrías distintas, conviene normalizar los paths antes de interpolarlos.</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script>
+    const path = document.querySelector("#morph-path");
+    const replayButton = document.querySelector("#replay");
+    const resetButton = document.querySelector("#reset");
+    const status = document.querySelector("#status");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function polygonPath(radii) {
+      const points = radii.map((radius, index) => {
+        const angle = (Math.PI * 2 * index / radii.length) - Math.PI / 2;
+        const x = 400 + Math.cos(angle) * radius;
+        const y = 280 + Math.sin(angle) * radius;
+        return (index === 0 ? "M " : "L ") + x.toFixed(1) + " " + y.toFixed(1);
+      });
+      return points.join(" ") + " Z";
+    }
+
+    const circle = Array(16).fill(175);
+    const flare = Array.from({ length: 16 }, (_, index) => index % 2 ? 116 : 204);
+    const organic = [190, 160, 138, 154, 195, 168, 143, 177, 185, 157, 133, 172, 202, 165, 142, 181];
+
+    if (reduceMotion) {
+      path.setAttribute("d", polygonPath(organic));
+      replayButton.disabled = true;
+      resetButton.disabled = true;
+      replayButton.textContent = "Movimiento reducido";
+      resetButton.textContent = "Forma estática";
+      status.textContent = "Vista estática: la máscara mantiene su forma orgánica final.";
+    } else {
+      let currentShape = circle;
+      const timeline = gsap.timeline({
+        paused: true,
+        onComplete: () => { status.textContent = "Secuencia completa. Puedes volver a reproducirla."; }
+      });
+
+      function addMorph(targetShape, duration, ease) {
+        const startShape = currentShape;
+        const progress = { value: 0 };
+        const interpolateShape = (amount) => startShape.map(
+          (radius, index) => radius + ((targetShape[index] - radius) * amount)
+        );
+        currentShape = targetShape;
+        timeline.to(progress, {
+          value: 1,
+          duration,
+          ease,
+          onUpdate: () => path.setAttribute("d", polygonPath(interpolateShape(progress.value)))
+        });
+      }
+
+      addMorph(flare, 1.05, "power2.inOut");
+      addMorph(organic, 1.1, "power2.inOut");
+      addMorph(circle, .9, "power2.inOut");
+
+      replayButton.addEventListener("click", () => {
+        status.textContent = "La máscara está recorriendo sus tres formas.";
+        timeline.restart();
+      });
+      resetButton.addEventListener("click", () => {
+        timeline.pause(0);
+        path.setAttribute("d", polygonPath(circle));
+        status.textContent = "La máscara volvió a su forma circular inicial.";
+      });
+
+      timeline.play();
+      window.addEventListener("pagehide", () => timeline.kill(), { once: true });
+    }
+  </script>
+</body>
+</html>

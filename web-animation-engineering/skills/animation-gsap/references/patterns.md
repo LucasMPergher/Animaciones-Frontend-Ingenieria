@@ -19,6 +19,8 @@ These are decision notes, not a replacement for the API reference. Confirm exact
 ## SVG and text
 
 - Inline SVG is convenient when animating its path/shape properties. Check **viewBox**, preserve aspect ratio, and provide a semantic label if the SVG carries meaning.
+- For path morphs, interpolate compatible path command structures. If the source and target geometry differ, normalize them with an approved tool after checking plugin availability; keep a static shape when motion is reduced.
+- Use an SVG **clipPath** or **mask** to reveal artwork without making meaningful content depend on the path animation.
 - Text splitting changes DOM structure. Preserve one accessible text representation, restore/scope generated nodes during cleanup, and handle punctuation, line wrapping, and localization.
 - Avoid relying on paid or account-bound add-ons; verify current plugin availability/licensing against GSAP's official site.
 

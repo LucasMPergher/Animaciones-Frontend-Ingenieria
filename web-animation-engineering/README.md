@@ -8,7 +8,7 @@ Sistema modular de Agent Skills para diseñar e implementar animaciones web mant
 
 `animation-lab` es la app compañera para abrir y probar las animaciones del catálogo. Funciona como una galería interactiva: elegís una tarjeta, ves la demo en la misma página y podés volver a ejecutarla cuando quieras. No genera animaciones automáticamente; sirve para entender cómo se ve cada patrón, qué lo activa y qué tecnologías usa antes de pedirlo o adaptarlo a un proyecto.
 
-Incluye 19 demos: 13 páginas HTML y 6 componentes React. Podés filtrarlas por CSS y APIs del navegador, GSAP, Motion, React + GSAP y Lottie. Según la demo, la animación comienza al abrirla, al desplazarte o al interactuar con un botón o control. El catálogo cubre, entre otros, revelados de texto, navegación animada, paneles horizontales fijados al scroll, fondos fijos, transiciones, SVG, Canvas y microinteracciones.
+Incluye 22 demos: 15 páginas HTML y 7 componentes React. Podés filtrarlas por CSS y APIs del navegador, GSAP, Motion, React + GSAP y Lottie. Según la demo, la animación comienza al abrirla, al desplazarte o al interactuar con un botón o control. El catálogo cubre, entre otros, revelados de texto, navegación animada, historias por scroll, paneles horizontales fijados, fondos fijos, transiciones de elemento compartido, morphs SVG, Canvas y microinteracciones.
 
 El laboratorio ayuda a:
 
