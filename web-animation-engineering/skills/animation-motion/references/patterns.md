@@ -12,6 +12,8 @@ Use syntax matching the installed Motion package. Current React documentation im
 
 - Use **whileHover**, **whileTap**, and focus-visible styling together. Motion gestures supplement semantic button/link behavior; they do not replace it.
 - Preserve visible focus, disabled state, and touch behavior. Avoid hover-only information.
+- For a draggable carousel or timeline, constrain the moving track to its measured viewport and let Motion's drag release provide inertia. Use `dragTransition.modifyTarget` to choose the nearest valid snap point from the projected target instead of starting a second competing animation.
+- Provide equivalent keyboard and button navigation. With reduced motion, disable momentum and move directly to the selected stop; do not remove navigation or content.
 
 ## Layout and presence
 
@@ -35,6 +37,8 @@ Motion is React-specific. Keep imports targeted and consult current documentatio
 - [Stagger](https://motion.dev/docs/stagger)
 - [Scroll](https://motion.dev/docs/react-use-scroll)
 - [Reduced motion](https://motion.dev/docs/react-use-reduced-motion)
+- [Drag gestures and constraints](https://motion.dev/docs/react-drag)
+- [Inertia and snap targets](https://motion.dev/docs/react-transitions)
 - [AnimatePresence](https://motion.dev/docs/react-animate-presence)
 - [Layout animations and shared elements](https://motion.dev/docs/react-layout-animations)
 - [Accessibility](https://motion.dev/docs/react-accessibility)

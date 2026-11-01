@@ -1,6 +1,6 @@
 ---
 name: animation-core
-description: Plan and implement web animations, including fixed backgrounds, scroll narratives, shared-element transitions, and SVG morphs, by inspecting the project and choosing CSS, Motion, GSAP, SVG, Canvas, or Lottie.
+description: Plan and implement web animations, including fixed backgrounds, scroll narratives, shared-element transitions, SVG morphs, and gesture-driven carousels, by inspecting the project and choosing CSS, Motion, GSAP, SVG, Canvas, or Lottie.
 ---
 
 # Animation Core

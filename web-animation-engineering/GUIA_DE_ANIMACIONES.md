@@ -19,10 +19,11 @@ Podés ver ejemplos de [entrada de hero](examples/css/hero-reveal/index.html), [
 - Animar un menú desplegable y hacer que se cierre con Escape.
 - Cambiar entre imágenes con un fundido.
 - Reordenar tarjetas con una transición que acompañe el nuevo lugar.
+- Crear un carrusel que se pueda arrastrar, continúe con inercia y se acomode en la tarjeta más cercana al soltar.
 - Expandir una tarjeta a una vista de detalle haciendo que la imagen y el título mantengan su continuidad.
 - Transicionar entre vistas o estados de una interfaz.
 
-Ejemplos: [botón interactivo con Motion](examples/motion/interactive-button.jsx), [navegación animada con GSAP](examples/gsap/animated-navigation/index.html), [cambio entre imágenes](examples/css/image-transition/index.html), [layout de tarjetas](examples/motion/card-layout.jsx), [transición de vistas](examples/motion/page-transition.jsx) y [elemento compartido entre tarjeta y detalle](examples/motion/shared-element.jsx).
+Ejemplos: [botón interactivo con Motion](examples/motion/interactive-button.jsx), [navegación animada con GSAP](examples/gsap/animated-navigation/index.html), [cambio entre imágenes](examples/css/image-transition/index.html), [layout de tarjetas](examples/motion/card-layout.jsx), [carrusel con arrastre e inercia](examples/motion/drag-snap-carousel.jsx), [transición de vistas](examples/motion/page-transition.jsx) y [elemento compartido entre tarjeta y detalle](examples/motion/shared-element.jsx).
 
 ### Movimiento ligado al scroll
 
@@ -58,7 +59,7 @@ Ejemplos: [dibujo de un path SVG](examples/svg/path-draw/index.html), [morph SVG
 - Crear una secuencia con tiempos y pasos coordinados.
 - Integrar GSAP en React con limpieza al desmontar y respeto por movimiento reducido.
 
-Ejemplos: [stagger con Motion](examples/motion/stagger-list.jsx), [elemento compartido con Motion](examples/motion/shared-element.jsx), [GSAP en React](examples/gsap-react/usegsap-component.jsx) y [botón interactivo con Motion](examples/motion/interactive-button.jsx).
+Ejemplos: [stagger con Motion](examples/motion/stagger-list.jsx), [elemento compartido con Motion](examples/motion/shared-element.jsx), [carrusel con gesto e inercia](examples/motion/drag-snap-carousel.jsx), [GSAP en React](examples/gsap-react/usegsap-component.jsx) y [botón interactivo con Motion](examples/motion/interactive-button.jsx).
 
 ## Cómo describir lo que querés
 
@@ -83,6 +84,8 @@ Si no tenés preferencias técnicas, podés decir: **«Elegí la forma más simp
 
 > Al abrir el detalle de una tarjeta, hacé que su imagen y su título viajen hasta la nueva vista y vuelvan al cerrar. Mantené el foco, permití cerrar con Escape y respetá movimiento reducido.
 
+> Hacé un carrusel horizontal que pueda arrastrar con mouse o tacto, conserve un poco de inercia y ajuste la tarjeta más cercana al soltar. Agregá controles de teclado y desactivá la inercia si está activo «Reducir movimiento».
+
 > Armá un relato de tres capítulos controlado por el scroll: fijá la escena en escritorio, coordiná los cambios con una timeline y apilá el contenido en móvil.
 
 > Transformá este path SVG en una segunda forma y usalo como máscara para revelar la ilustración de fondo. Conservá un estado estático útil para movimiento reducido.
@@ -101,4 +104,4 @@ Si no tenés preferencias técnicas, podés decir: **«Elegí la forma más simp
 
 ## Probar las demos
 
-La [página de ejemplos](examples/README.md) explica cómo servir las demos HTML y ejecutar los componentes React. La galería Motion Lab integra las 22 demos en tarjetas; está en el directorio hermano `animation-lab/`, con sus instrucciones en `animation-lab/README.md`.
+La [página de ejemplos](examples/README.md) explica cómo servir las demos HTML y ejecutar los componentes React. La galería Motion Lab integra las 23 demos en tarjetas; está en el directorio hermano `animation-lab/`, con sus instrucciones en `animation-lab/README.md`.

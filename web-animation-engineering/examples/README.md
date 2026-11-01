@@ -2,7 +2,7 @@
 
 Las páginas HTML se ejecutan en un servidor estático. Desde esta carpeta ejecuta **python -m http.server 8000** y abre **http://localhost:8000/** para ver el [catálogo de demos](index.html). GSAP y Lottie se cargan desde jsDelivr en esas demos, así que requieren conexión.
 
-Los componentes JSX necesitan una app React anfitriona. Crea esa app en un directorio separado, fuera de este paquete, y copia un ejemplo a **src/App.jsx**. Así el proyecto de skills conserva su estructura y sus validaciones:
+Los componentes JSX necesitan una app React anfitriona. Crea esa app en un directorio separado, fuera de este paquete, y copia el componente a **src/App.jsx**. Si el ejemplo tiene un archivo CSS junto al JSX, cópialo también a **src/** y conserva o ajusta su import. Así el proyecto de skills conserva su estructura y sus validaciones:
 
 ~~~sh
 # Ejecuta esto desde una carpeta donde guardes proyectos de prueba,
@@ -34,6 +34,7 @@ Para probar **gsap-react/usegsap-component.jsx**, instala **npm install gsap @gs
 | [motion/stagger-list.jsx](motion/stagger-list.jsx) | React + Motion | Variants coordinadas de padre e hijos. |
 | [motion/interactive-button.jsx](motion/interactive-button.jsx) | React + Motion | Estados de hover/tap y estado accesible del botón. |
 | [motion/card-layout.jsx](motion/card-layout.jsx) | React + Motion | Reordenamiento con animación de layout. |
+| [motion/drag-snap-carousel.jsx](motion/drag-snap-carousel.jsx) | React + Motion | Carrusel que se arrastra con inercia y se ajusta a la parada cercana; también admite teclado y botones. |
 | [motion/shared-element.jsx](motion/shared-element.jsx) | React + Motion | Transición de tarjeta a detalle con imagen y título compartidos, retorno de foco y Escape. |
 | [motion/scroll-reveal.jsx](motion/scroll-reveal.jsx) | React + Motion | Movimiento ligado a scroll con useScroll y reduced motion. |
 | [motion/page-transition.jsx](motion/page-transition.jsx) | React + Motion | Entrada y salida visual con AnimatePresence. |
@@ -64,6 +65,7 @@ Para probar **gsap-react/usegsap-component.jsx**, instala **npm install gsap @gs
 - **Motion stagger:** variants propagan el estado y delayChildren con stagger coordina los hijos; useReducedMotion elimina el desplazamiento.
 - **Interactive button:** hover/tap son feedback adicional; el botón nativo mantiene aria-pressed y su estado funcional.
 - **Card layout:** la lista de datos controla el orden, keys son estables y layout anima los cambios geométricos.
+- **Drag + inertia + snap:** Motion arrastra una pista con constraints y momentum; `dragTransition.modifyTarget` ajusta el punto final a las paradas medidas al cambiar el tamaño. Flechas, Home/End y botones ofrecen navegación equivalente, y reduced motion elimina la inercia.
 - **Shared element:** Motion conecta tarjeta y detalle con `layoutId`; Escape y el botón de regreso cierran la vista y devuelven el foco a la tarjeta inicial.
 - **Motion scroll:** useScroll y useTransform producen un valor de movimiento sin almacenar frames en estado React; reduced motion mantiene el contenido quieto.
 - **Page transition:** AnimatePresence conserva la salida del panel anterior; es una demo de estado local, no reemplaza un router.

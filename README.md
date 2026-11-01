@@ -5,7 +5,7 @@ Este repositorio reúne el sistema de skills para crear animaciones web y la app
 ## Qué incluye
 
 - [`web-animation-engineering/`](web-animation-engineering/README.md): siete skills de Codex, documentación, validador y ejemplos CSS, GSAP, Motion, SVG, Canvas y Lottie.
-- [`animation-lab/`](animation-lab/README.md): galería React + Vite con 22 demos ejecutables, incluidos una historia por scroll, transiciones de elemento compartido y morphs SVG.
+- [`animation-lab/`](animation-lab/README.md): galería React + Vite con 23 demos ejecutables, incluidos una historia por scroll, transiciones de elemento compartido, morphs SVG y un carrusel con inercia.
 
 ## Probar la galería
 
